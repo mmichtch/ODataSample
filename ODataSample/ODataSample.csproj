@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>ODataSample</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200111082708_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200111082708_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200111083549_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200111083549_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200111083728_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200111083728_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200111084603_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200111084603_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200111084723_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200111084723_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200111085310_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200111085310_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+
+</Project>
