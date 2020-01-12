@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OData.Edm;
 using ODataSample.Data;
 using ODataSample.Model;
+using ODataSample.Helpers;
 
 namespace ODataSample
 {
@@ -33,13 +34,11 @@ namespace ODataSample
         {
             services.AddDbContext<LibraryContext>(options => {
 
+
                 options
                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                         opt => { /*opt.EnableRetryOnFailure(); opt.CommandTimeout();*/ }
                     );
-
-                //if (_env.IsDevelopment())
-                //    options.EnableSensitiveDataLogging();
             },
             contextLifetime: ServiceLifetime.Scoped,
             optionsLifetime: ServiceLifetime.Scoped);
@@ -51,6 +50,8 @@ namespace ODataSample
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UpdateDatabase();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
