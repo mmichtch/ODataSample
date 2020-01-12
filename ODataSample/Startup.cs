@@ -80,7 +80,20 @@ namespace ODataSample
         private static IEdmModel GetEdmModel()
         {
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            builder.EntitySet<Book>("Books");
+            var esBooks = builder.EntitySet<Book>("Books");
+            var etBook = esBooks.EntityType;
+
+            builder.EntityType<BookAuthor>().HasKey(e => e.AuthorId);
+            etBook.ContainsMany(e => e.Authors);
+
+            builder.EntityType<BookGenre>().HasKey(e => e.GenreId);
+            etBook.ContainsMany(e => e.Genres);
+            
+            etBook.ContainsOptional(e => e.CookBook);
+            etBook.ContainsOptional(e => e.TextBook);
+            etBook.ContainsOptional(e => e.RoadAtlas);
+
+
             builder.EntitySet<Author>("Authors");
             builder.EntitySet<Genre>("Genres");
             return builder.GetEdmModel();
