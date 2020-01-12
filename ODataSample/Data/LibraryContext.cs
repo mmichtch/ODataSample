@@ -37,23 +37,20 @@ namespace ODataSample.Data
             {
                 entity.ToTable("Books");
                 entity.Property(e => e.Name).HasMaxLength(40);
+            });
 
-                entity.OwnsMany(e => e.Authors, c =>
-                {
-                    c.ToTable("BookAuthors");
-                    c.HasKey(p => new { p.BookId, p.AuthorId });
-                    c.WithOwner(p => p.Book).HasForeignKey(p => p.BookId);
-                    c.HasOne(p => p.Author).WithMany().HasForeignKey(p => p.AuthorId);
-                });
+            modelBuilder.Entity<BookAuthor>(entity => {
+                entity.ToTable("BookAuthors");
+                entity.HasKey(e => new { e.BookId, e.AuthorId });
+                entity.HasOne(e => e.Book).WithMany(e => e.Authors).HasForeignKey(e => e.BookId).OnDelete(DeleteBehavior.Cascade);
+                entity.HasOne(e => e.Author).WithMany().HasForeignKey(e => e.AuthorId);
+            });
 
-                entity.OwnsMany(e => e.Genres, c =>
-                {
-                    c.ToTable("BookGenres");
-                    c.HasKey(p => new { p.BookId, p.GenreId });
-                    c.WithOwner(p => p.Book).HasForeignKey(p => p.BookId);
-                    c.HasOne(p => p.Genre).WithMany().HasForeignKey(p => p.GenreId);
-                });
-
+            modelBuilder.Entity<BookGenre>(entity => {
+                entity.ToTable("BookGenres");
+                entity.HasKey(e => new { e.BookId, e.GenreId });
+                entity.HasOne(e => e.Book).WithMany(e => e.Genres).HasForeignKey(e => e.BookId).OnDelete(DeleteBehavior.Cascade);
+                entity.HasOne(e => e.Genre).WithMany().HasForeignKey(e => e.GenreId);
             });
 
             modelBuilder.Entity<CookBook>(entity =>
@@ -62,13 +59,12 @@ namespace ODataSample.Data
                 entity.Property(p => p.Id).ValueGeneratedNever();
                 entity.Property(p => p.Theme).HasMaxLength(100);
                 entity.HasOne<Book>().WithOne(e => e.CookBook).HasForeignKey<CookBook>(p => p.Id).OnDelete(DeleteBehavior.Cascade);
+            });
 
-                entity.OwnsMany(p => p.Recipes, r => {
-                    r.ToTable("CookRecipes");
-                    r.Property(x => x.Title).HasMaxLength(100);
-                    r.WithOwner(x => x.CookBook).HasForeignKey(x => x.CookBookId);
-                });
-
+            modelBuilder.Entity<CookRecipe>(entity => {
+                entity.ToTable("CookRecipes");
+                entity.Property(x => x.Title).HasMaxLength(100);
+                entity.HasOne(e => e.CookBook).WithMany(x => x.Recipes).HasForeignKey(x => x.CookBookId).OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<RoadAtlas>(entity =>
