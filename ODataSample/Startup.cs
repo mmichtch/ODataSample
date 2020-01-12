@@ -82,6 +82,7 @@ namespace ODataSample
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Book>("Books");
             builder.EntitySet<Author>("Authors");
+            builder.EntitySet<Genre>("Genres");
             return builder.GetEdmModel();
         }
     }
