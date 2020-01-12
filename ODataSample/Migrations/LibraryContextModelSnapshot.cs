@@ -63,12 +63,12 @@ namespace ODataSample.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Theme")
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
-                    b.ToTable("CookBook");
+                    b.ToTable("CookBooks");
                 });
 
             modelBuilder.Entity("ODataSample.Model.Genre", b =>
@@ -98,7 +98,7 @@ namespace ODataSample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoadAtlas");
+                    b.ToTable("RoadAtlases");
                 });
 
             modelBuilder.Entity("ODataSample.Model.TextBook", b =>
@@ -110,12 +110,12 @@ namespace ODataSample.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
-                    b.ToTable("TextBook");
+                    b.ToTable("TextBooks");
                 });
 
             modelBuilder.Entity("ODataSample.Model.Book", b =>
@@ -132,7 +132,7 @@ namespace ODataSample.Migrations
 
                             b1.HasIndex("AuthorId");
 
-                            b1.ToTable("BookAuthor");
+                            b1.ToTable("BookAuthors");
 
                             b1.HasOne("ODataSample.Model.Author", "Author")
                                 .WithMany()
@@ -156,7 +156,7 @@ namespace ODataSample.Migrations
 
                             b1.HasIndex("GenreId");
 
-                            b1.ToTable("BookGenre");
+                            b1.ToTable("BookGenres");
 
                             b1.WithOwner("Book")
                                 .HasForeignKey("BookId");
@@ -191,12 +191,12 @@ namespace ODataSample.Migrations
                                 .HasColumnType("nvarchar(max)");
 
                             b1.Property<string>("Title")
-                                .HasColumnType("nvarchar(40)")
-                                .HasMaxLength(40);
+                                .HasColumnType("nvarchar(100)")
+                                .HasMaxLength(100);
 
                             b1.HasKey("CookBookId", "Id");
 
-                            b1.ToTable("CookRecipe");
+                            b1.ToTable("CookRecipes");
 
                             b1.WithOwner("CookBook")
                                 .HasForeignKey("CookBookId");

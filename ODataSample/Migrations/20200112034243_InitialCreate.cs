@@ -48,7 +48,7 @@ namespace ODataSample.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BookAuthor",
+                name: "BookAuthors",
                 columns: table => new
                 {
                     BookId = table.Column<int>(nullable: false),
@@ -56,15 +56,15 @@ namespace ODataSample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookAuthor", x => new { x.BookId, x.AuthorId });
+                    table.PrimaryKey("PK_BookAuthors", x => new { x.BookId, x.AuthorId });
                     table.ForeignKey(
-                        name: "FK_BookAuthor_Authors_AuthorId",
+                        name: "FK_BookAuthors_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BookAuthor_Books_BookId",
+                        name: "FK_BookAuthors_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
@@ -72,17 +72,17 @@ namespace ODataSample.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CookBook",
+                name: "CookBooks",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
-                    Theme = table.Column<string>(maxLength: 40, nullable: true)
+                    Theme = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CookBook", x => x.Id);
+                    table.PrimaryKey("PK_CookBooks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CookBook_Books_Id",
+                        name: "FK_CookBooks_Books_Id",
                         column: x => x.Id,
                         principalTable: "Books",
                         principalColumn: "Id",
@@ -90,7 +90,7 @@ namespace ODataSample.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoadAtlas",
+                name: "RoadAtlases",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
@@ -98,9 +98,9 @@ namespace ODataSample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoadAtlas", x => x.Id);
+                    table.PrimaryKey("PK_RoadAtlases", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RoadAtlas_Books_Id",
+                        name: "FK_RoadAtlases_Books_Id",
                         column: x => x.Id,
                         principalTable: "Books",
                         principalColumn: "Id",
@@ -108,18 +108,18 @@ namespace ODataSample.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TextBook",
+                name: "TextBooks",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false),
-                    Subject = table.Column<string>(maxLength: 40, nullable: true),
+                    Subject = table.Column<string>(maxLength: 100, nullable: true),
                     Content = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TextBook", x => x.Id);
+                    table.PrimaryKey("PK_TextBooks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TextBook_Books_Id",
+                        name: "FK_TextBooks_Books_Id",
                         column: x => x.Id,
                         principalTable: "Books",
                         principalColumn: "Id",
@@ -127,7 +127,7 @@ namespace ODataSample.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BookGenre",
+                name: "BookGenres",
                 columns: table => new
                 {
                     BookId = table.Column<int>(nullable: false),
@@ -135,15 +135,15 @@ namespace ODataSample.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookGenre", x => new { x.BookId, x.GenreId });
+                    table.PrimaryKey("PK_BookGenres", x => new { x.BookId, x.GenreId });
                     table.ForeignKey(
-                        name: "FK_BookGenre_Books_BookId",
+                        name: "FK_BookGenres_Books_BookId",
                         column: x => x.BookId,
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BookGenre_Genres_GenreId",
+                        name: "FK_BookGenres_Genres_GenreId",
                         column: x => x.GenreId,
                         principalTable: "Genres",
                         principalColumn: "Id",
@@ -151,53 +151,53 @@ namespace ODataSample.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CookRecipe",
+                name: "CookRecipes",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CookBookId = table.Column<int>(nullable: false),
                     Content = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(maxLength: 40, nullable: true)
+                    Title = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CookRecipe", x => new { x.CookBookId, x.Id });
+                    table.PrimaryKey("PK_CookRecipes", x => new { x.CookBookId, x.Id });
                     table.ForeignKey(
-                        name: "FK_CookRecipe_CookBook_CookBookId",
+                        name: "FK_CookRecipes_CookBooks_CookBookId",
                         column: x => x.CookBookId,
-                        principalTable: "CookBook",
+                        principalTable: "CookBooks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookAuthor_AuthorId",
-                table: "BookAuthor",
+                name: "IX_BookAuthors_AuthorId",
+                table: "BookAuthors",
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookGenre_GenreId",
-                table: "BookGenre",
+                name: "IX_BookGenres_GenreId",
+                table: "BookGenres",
                 column: "GenreId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BookAuthor");
+                name: "BookAuthors");
 
             migrationBuilder.DropTable(
-                name: "BookGenre");
+                name: "BookGenres");
 
             migrationBuilder.DropTable(
-                name: "CookRecipe");
+                name: "CookRecipes");
 
             migrationBuilder.DropTable(
-                name: "RoadAtlas");
+                name: "RoadAtlases");
 
             migrationBuilder.DropTable(
-                name: "TextBook");
+                name: "TextBooks");
 
             migrationBuilder.DropTable(
                 name: "Authors");
@@ -206,7 +206,7 @@ namespace ODataSample.Migrations
                 name: "Genres");
 
             migrationBuilder.DropTable(
-                name: "CookBook");
+                name: "CookBooks");
 
             migrationBuilder.DropTable(
                 name: "Books");
