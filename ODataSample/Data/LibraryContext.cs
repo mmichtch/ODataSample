@@ -43,14 +43,14 @@ namespace ODataSample.Data
                 entity.ToTable("BookAuthors");
                 entity.HasKey(e => new { e.BookId, e.AuthorId });
                 entity.HasOne(e => e.Book).WithMany(e => e.Authors).HasForeignKey(e => e.BookId).OnDelete(DeleteBehavior.Cascade);
-                entity.HasOne(e => e.Author).WithMany().HasForeignKey(e => e.AuthorId);
+                entity.HasOne(e => e.Author).WithMany().HasForeignKey(e => e.AuthorId).OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<BookGenre>(entity => {
                 entity.ToTable("BookGenres");
                 entity.HasKey(e => new { e.BookId, e.GenreId });
                 entity.HasOne(e => e.Book).WithMany(e => e.Genres).HasForeignKey(e => e.BookId).OnDelete(DeleteBehavior.Cascade);
-                entity.HasOne(e => e.Genre).WithMany().HasForeignKey(e => e.GenreId);
+                entity.HasOne(e => e.Genre).WithMany().HasForeignKey(e => e.GenreId).OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<CookBook>(entity =>
