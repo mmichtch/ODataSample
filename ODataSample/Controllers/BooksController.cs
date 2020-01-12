@@ -9,7 +9,7 @@ using ODataSample.Model;
 
 namespace ODataSample.Controllers
 {
-    [ODataRoutePrefix("Books")]
+    [ODataRoutePrefix("[controller]")]
     public class BooksController : ODataController
     {
         private readonly LibraryContext db;
