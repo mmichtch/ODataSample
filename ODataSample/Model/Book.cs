@@ -14,16 +14,13 @@ namespace ODataSample.Model
             Genres = new HashSet<BookGenre>();
         }
 
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-        public BookType Type { get; set; }
-
-        public CookBook CookBook { get; set; }
-        public TextBook TextBook { get; set; }
-        public RoadAtlas RoadAtlas { get; set; }
-
-        public IEnumerable<BookAuthor> Authors { get; set; }
-        public IEnumerable<BookGenre> Genres { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual BookType Type { get; set; }
+        public virtual CookBook CookBook { get; set; }
+        public virtual TextBook TextBook { get; set; }
+        public virtual RoadAtlas RoadAtlas { get; set; }
+        public virtual IEnumerable<BookAuthor> Authors { get; set; }
+        public virtual IEnumerable<BookGenre> Genres { get; set; }
     }
 }

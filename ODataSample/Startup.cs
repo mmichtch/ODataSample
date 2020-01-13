@@ -1,22 +1,18 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OData.Edm;
+
 using ODataSample.Data;
-using ODataSample.Model;
 using ODataSample.Helpers;
+using ODataSample.Model;
 
 namespace ODataSample
 {
@@ -36,6 +32,7 @@ namespace ODataSample
 
 
                 options
+                    .UseLazyLoadingProxies()
                     .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                         opt => { /*opt.EnableRetryOnFailure(); opt.CommandTimeout();*/ }
                     );

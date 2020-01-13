@@ -8,12 +8,10 @@ namespace ODataSample.Model
 {
     public class BookAuthor
     {
-        public int BookId { get; set; }
-        public int AuthorId { get; set; }
-
-
-        public Book Book{ get; set; }
-        public Author Author { get; set; }
+        public virtual int BookId { get; set; }
+        public virtual int AuthorId { get; set; }
+        public virtual Book Book{ get; set; }
+        public virtual Author Author { get; set; }
 
     }
 }

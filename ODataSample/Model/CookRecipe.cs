@@ -8,11 +8,11 @@ namespace ODataSample.Model
 {
     public class CookRecipe
     {
-        public int Id { get; set; }
-        public int CookBookId { get; set; }
-        public string Content { get; set; }
-        public string Title { get; set; }
-        public CookBook CookBook { get; set; }
+        public virtual int Id { get; set; }
+        public virtual int CookBookId { get; set; }
+        public virtual string Content { get; set; }
+        public virtual string Title { get; set; }
+        public virtual CookBook CookBook { get; set; }
         
     }
 }

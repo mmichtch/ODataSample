@@ -8,7 +8,7 @@ namespace ODataSample.Model
 {
     public class RoadAtlas
     {
-        public int Id { get; set; }
-        public string Country { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Country { get; set; }
     }
 }
