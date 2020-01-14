@@ -67,6 +67,13 @@ namespace ODataSample.Data
                 entity.HasOne(e => e.CookBook).WithMany(x => x.Recipes).HasForeignKey(x => x.CookBookId).OnDelete(DeleteBehavior.Cascade);
             });
 
+            modelBuilder.Entity<CookBookBlogEntry>(entity => {
+                entity.ToTable("CookBookBlogEntries");
+                entity.Property(x => x.Name).HasMaxLength(100);
+                entity.HasOne(e => e.CookBook).WithMany(x => x.BlogEntries).HasForeignKey(x => x.CookBookId).OnDelete(DeleteBehavior.Cascade);
+            });
+
+
             modelBuilder.Entity<RoadAtlas>(entity =>
             {
                 entity.ToTable("RoadAtlases");

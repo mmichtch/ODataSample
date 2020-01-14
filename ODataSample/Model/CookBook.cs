@@ -11,5 +11,7 @@ namespace ODataSample.Model
         public int Id { get; set; }
         public string Theme { get; set; }
         public IEnumerable<CookRecipe> Recipes { get; set; }
+        public IEnumerable<CookBookBlogEntry> BlogEntries { get; set; }
     }
+
 }
